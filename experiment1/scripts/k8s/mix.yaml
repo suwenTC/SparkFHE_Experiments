@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mix-test
+spec:
+  containers:
+  - name: mix
+    image: sparkfhe
+    imagePullPolicy: Never
+    command:
+    - 'bash'
+    args: ['/run_mix.sh', '4']
+    volumeMounts:
+    - name: data
+      mountPath: "/proj/shield-PG0/SparkFHE/data/"
+  restartPolicy: Never
+  volumes:
+  - name: data
+    hostPath:
+      path: /proj/shield-PG0/SparkFHE/data/
+      type: Directory

@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sparkfhetest
+spec:
+  containers:
+  - name: sparkfhe1
+    image: sparkfhe
+    imagePullPolicy: Never
+    command:
+    - 'bash'
+    args: ['/run_dot_prod.sh', '1']
+    volumeMounts:
+    - name: data
+      mountPath: "/proj/shield-PG0/SparkFHE/data/"
+  restartPolicy: Never
+  volumes:
+  - name: data
+    hostPath:
+      path: /proj/shield-PG0/SparkFHE/data/
+      type: Directory

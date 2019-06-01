@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dot-prod-test
+spec:
+  containers:
+  - name: dot-prod
+    image: sparkfhe
+    imagePullPolicy: Never
+    command:
+    - 'bash'
+    args: ['/run_dot_prod.sh', '12']
+    volumeMounts:
+    - name: data
+      mountPath: "/proj/shield-PG0/SparkFHE/data/"
+  restartPolicy: Never
+  volumes:
+  - name: data
+    hostPath:
+      path: /proj/shield-PG0/SparkFHE/data/
+      type: Directory

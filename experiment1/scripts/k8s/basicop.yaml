@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: basic-op-test
+spec:
+  containers:
+  - name: basic-op
+    image: sparkfhe
+    imagePullPolicy: Never
+    command:
+    - 'bash'
+    args: ['/run_basic_op.sh', '8']
+    volumeMounts:
+    - name: data
+      mountPath: "/proj/shield-PG0/SparkFHE/data/"
+  restartPolicy: Never
+  volumes:
+  - name: data
+    hostPath:
+      path: /proj/shield-PG0/SparkFHE/data/
+      type: Directory
